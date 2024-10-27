@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>レース情報登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+    <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
+        <h1 class="text-center text-primary mb-4">レース情報登録</h1>
+        
+        <form th:action="@{/races/add}" th:object="${race}" method="post" class="text-center">
+            <div class="mb-3">
+                <label for="location" class="form-label fw-bold">開催地</label>
+                <input type="text" class="form-control text-center" id="location" name="location" th:field="*{location}" placeholder="例：東京競馬場" required>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label fw-bold">日付</label>
+                <input type="date" class="form-control text-center" id="date" name="date" th:field="*{date}" required>
+            </div>
+            <div class="mb-3">
+                <label for="weather" class="form-label fw-bold">天候</label>
+                <input type="text" class="form-control text-center" id="weather" name="weather" th:field="*{weather}" placeholder="例：晴れ" required>
+            </div>
+            <div class="mb-3">
+                <label for="trackCondition" class="form-label fw-bold">馬場状態</label>
+                <input type="text" class="form-control text-center" id="trackCondition" name="trackCondition" th:field="*{trackCondition}" placeholder="例：良" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-4 py-2">レース情報を登録する</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>

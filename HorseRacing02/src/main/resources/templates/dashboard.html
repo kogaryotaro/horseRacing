@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>競馬データ分析ダッシュボード</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-light">
+    <div class="container my-5 p-4 bg-white rounded shadow">
+        <h1 class="text-center text-primary mb-4">競馬データ分析ダッシュボード</h1>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>開催地</th>
+                    <th>日付</th>
+                    <th>天候</th>
+                    <th>馬場状態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="race : ${races}">
+                    <td th:text="${race.id}"></td>
+                    <td th:text="${race.location}"></td>
+                    <td th:text="${race.date}"></td>
+                    <td th:text="${race.weather}"></td>
+                    <td th:text="${race.trackCondition}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>    
+</body>
+</html>
