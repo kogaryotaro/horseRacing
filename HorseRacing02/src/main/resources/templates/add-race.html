@@ -9,7 +9,9 @@
 <body class="bg-light d-flex align-items-center min-vh-100">
     <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
         <h1 class="text-center text-primary mb-4">レース情報登録</h1>
-        
+        <div th:if="${message} != null">
+			<p th:text="${message}"></p>
+		</div>
         <form th:action="@{/races/add}" th:object="${race}" method="post" class="text-center">
             <div class="mb-3">
                 <label for="location" class="form-label fw-bold">開催地</label>

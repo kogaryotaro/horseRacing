@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.horseracing.form.RaceForm;
 import com.example.horseracing.repository.RaceRepository;
@@ -30,13 +31,14 @@ public class RaceController {
 	@PostMapping("/add")
 	private String addRace(
 			@ModelAttribute RaceForm form,
-			Model model) {
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		int result = raceRepository.addRace(form);
 		
 		if (result == 1) {
-			model.addAttribute("message", "レース情報が登録されました！");
+			redirectAttributes.addFlashAttribute("message", "レース情報が登録されました！");
 		} else {
-			model.addAttribute("message", "登録に失敗しました...");
+			redirectAttributes.addFlashAttribute("message", "登録に失敗しました...");
 		}
 		
 		return "redirect:/races/add";
