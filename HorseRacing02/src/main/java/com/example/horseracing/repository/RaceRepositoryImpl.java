@@ -47,7 +47,7 @@ public class RaceRepositoryImpl implements RaceRepository {
 			RaceForm race = new RaceForm();
 			race.setId((int)row.get("id"));
 			race.setLocation((String)row.get("location"));
-			race.setDate((String)row.get("date"));
+			race.setDate(((java.sql.Date)row.get("date")).toString());
 			race.setWeather((String)row.get("weather"));
 			race.setTrackCondition((String)row.get("track_condition"));
 			races.add(race);
