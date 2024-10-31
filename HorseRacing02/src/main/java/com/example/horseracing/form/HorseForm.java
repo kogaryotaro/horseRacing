@@ -16,5 +16,5 @@ public class HorseForm {
 	private String breed;
 	
 	@NotNull(message="入力してください")
-	private String age;
+	private Integer age;
 }

@@ -46,7 +46,7 @@ return jdbcTemplate.update(sql, form.getName(),
 			horse.setId((int)row.get("id"));
 			horse.setName((String)row.get("name"));
 			horse.setBreed((String)row.get("breed"));
-			horse.setAge((String)row.get("age"));
+			horse.setAge((int)row.get("age"));
 			horses.add(horse);
 		}
 		
