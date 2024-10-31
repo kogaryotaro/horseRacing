@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ジョッキー登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+    <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
+        <h1 class="text-center text-primary mb-4">ジョッキー登録</h1>
+        <div th:if="${message} != null">
+			<p th:text="${message}"></p>
+		</div>
+        <form th:action="@{/jockeys/add}" th:object="${jockey}" method="post" class="text-center">
+            <div class="mb-3 form-group">
+                <label for="name" class="form-label fw-bold">名前</label>
+                <input type="text" class="form-control text-center" id="name" name="name" th:field="*{name}" placeholder="例：川田" required>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="experience" class="form-label fw-bold">年数</label>
+                <input type="text" class="form-control text-center" id="experience" name="experience" th:field="*{experience}"  placeholder="例：40">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-4 py-2">ジョッキー情報を登録する</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>

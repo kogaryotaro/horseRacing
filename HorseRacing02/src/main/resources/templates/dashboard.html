@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>競馬データ分析ダッシュボード</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競馬データダッシュボード</title>
+    <link rel="stylesheet" href="/webapp/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body class="bg-light">
-    <div class="container my-5 p-4 bg-white rounded shadow">
-        <h1 class="text-center text-primary mb-4">競馬データ分析ダッシュボード</h1>
-        <table class="table table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>開催地</th>
-                    <th>日付</th>
-                    <th>天候</th>
-                    <th>馬場状態</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="race : ${races}">
-                    <td th:text="${race.id}"></td>
-                    <td th:text="${race.location}"></td>
-                    <td th:text="${race.date}"></td>
-                    <td th:text="${race.weather}"></td>
-                    <td th:text="${race.trackCondition}"></td>
-                </tr>
-            </tbody>
-        </table>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">競馬データ管理ダッシュボード</h1>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">レース情報</h5>
+                        <a href="/races/add" class="btn btn-primary btn-block mb-2">レースを登録</a>
+                        <a href="/races/all" class="btn btn-secondary btn-block">レース一覧を表示</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">馬の情報</h5>
+                        <a href="/horses/add" class="btn btn-primary btn-block mb-2">馬を登録</a>
+                        <a href="/horses/all" class="btn btn-secondary btn-block">馬の一覧を表示</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">ジョッキー情報</h5>
+                        <a href="/jockeys/add" class="btn btn-primary btn-block mb-2">ジョッキーを登録</a>
+                        <a href="/jockeys/all" class="btn btn-secondary btn-block">ジョッキー一覧を表示</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">レース結果</h5>
+                        <a href="/race-results/add" class="btn btn-primary btn-block mb-2">レース結果を登録</a>
+                        <a href="/race-results/all" class="btn btn-secondary btn-block">レース結果一覧を表示</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>    
 </body>
 </html>

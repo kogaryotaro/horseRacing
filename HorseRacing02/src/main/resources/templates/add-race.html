@@ -13,19 +13,19 @@
 			<p th:text="${message}"></p>
 		</div>
         <form th:action="@{/races/add}" th:object="${race}" method="post" class="text-center">
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="location" class="form-label fw-bold">開催地</label>
                 <input type="text" class="form-control text-center" id="location" name="location" th:field="*{location}" placeholder="例：東京競馬場" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="date" class="form-label fw-bold">日付</label>
                 <input type="date" class="form-control text-center" id="date" name="date" th:field="*{date}" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="weather" class="form-label fw-bold">天候</label>
                 <input type="text" class="form-control text-center" id="weather" name="weather" th:field="*{weather}" placeholder="例：晴れ" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="trackCondition" class="form-label fw-bold">馬場状態</label>
                 <input type="text" class="form-control text-center" id="trackCondition" name="trackCondition" th:field="*{trackCondition}" placeholder="例：良" required>
             </div>

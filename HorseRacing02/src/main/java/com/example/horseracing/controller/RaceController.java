@@ -48,6 +48,6 @@ public class RaceController {
 	@GetMapping("/all")
 	private String getAllRaces(Model model) {
 		model.addAttribute("races", raceRepository.getAllRaces());
-		return "dashboard";
+		return "list";
 	}
 }

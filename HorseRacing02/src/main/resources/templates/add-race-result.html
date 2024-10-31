@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>レース結果情報登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+    <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
+        <h1 class="text-center text-primary mb-4">レース結果登録</h1>
+        <div th:if="${message} != null">
+			<p th:text="${message}"></p>
+		</div>
+        <form th:action="@{/race-results/add}" th:object="${raceResult}" method="post" class="text-center">
+            <div class="mb-3 form-group">
+                <label for="raceId" class="form-label fw-bold">レースID</label>
+                <input type="number" class="form-control text-center" id="raceId" name="raceId" th:field="*{raceId}" required>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="horseId" class="form-label fw-bold">競走馬ID</label>
+                <input type="date" class="form-control text-center" id="horseId" name="horseId" th:field="*{horseId}" required>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="jockeyId" class="form-label fw-bold">ジョッキーID</label>
+                <input type="number" class="form-control text-center" id="jockeyId" name="jockeyId" th:field="*{jockeyId}" required>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="position" class="form-label fw-bold">順位</label>
+                <input type="number" class="form-control text-center" id="position" name="position" th:field="*{position}" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-4 py-2">レース結果を登録する</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>
