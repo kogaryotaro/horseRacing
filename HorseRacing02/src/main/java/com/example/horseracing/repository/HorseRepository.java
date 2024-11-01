@@ -6,7 +6,7 @@ import com.example.horseracing.form.HorseForm;
 
 public interface HorseRepository {
 
-	public int addHourse(HorseForm form);
+	public int addHorse(HorseForm form);
 	
 	public List<HorseForm> getAllHorse();
 }

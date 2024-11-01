@@ -18,7 +18,7 @@ public class HorseRepositoryImpl implements HorseRepository {
 	private final JdbcTemplate jdbcTemplate;
 
 	@Override
-	public int addHourse(HorseForm form) {
+	public int addHorse(HorseForm form) {
 		
 		String sql = "INSERT	INTO		"+
 				"HORSE						"+
