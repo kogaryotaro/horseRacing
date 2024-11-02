@@ -34,7 +34,7 @@ public class HorseController {
 	
 	@PostMapping("/add")
 	public String addHorse(
-			@Validated @ModelAttribute HorseForm form,
+			@Validated @ModelAttribute("horse") HorseForm form,  //formをなにでテンプレート側が受け取っているかを明示することが必要
 			BindingResult result,
 			Model model,
 			RedirectAttributes redirectAttributes) {
