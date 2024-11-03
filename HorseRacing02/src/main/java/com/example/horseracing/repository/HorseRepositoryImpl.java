@@ -28,7 +28,7 @@ public class HorseRepositoryImpl implements HorseRepository {
 				"VALUES					"+
 				"	(?, ?, ?)				";
 
-return jdbcTemplate.update(sql, form.getName(),
+		return jdbcTemplate.update(sql, form.getName(),
 													form.getBreed(),
 													form.getAge()	);
 				

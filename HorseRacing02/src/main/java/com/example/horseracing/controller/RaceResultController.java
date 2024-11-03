@@ -2,6 +2,8 @@ package com.example.horseracing.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +34,24 @@ public class RaceResultController {
 	
 	@PostMapping("/add")
 	public String addRaceResult(
-			@ModelAttribute RaceResultForm form,
+			@Validated @ModelAttribute("raceResult") RaceResultForm form,
+			BindingResult result,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		
-		repository.addRaceResult(form);
-		redirectAttributes.addFlashAttribute("message", "レース結果が登録されました");
+		if (result.hasErrors()) {
+			System.out.println("登録失敗");
+			return "add-race-result";
+		}
+		
+		try {
+			repository.addRaceResult(form);
+			redirectAttributes.addFlashAttribute("message", "レース結果が登録されました");
+		}catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("error", "登録に失敗");
+			return "redirect:/ｒace-results/add";
+		}
 		
 		return "redirect:/ｒace-results/add";
 		

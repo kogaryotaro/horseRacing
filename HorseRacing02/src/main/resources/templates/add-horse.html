@@ -11,6 +11,9 @@
         <div th:if="${message}">
 			<p th:text="${message}"></p>
 		</div>
+        <div th:if="${error}">
+			<p th:text="${error}"></p>
+		</div>
         <form th:action="@{/horses/add}" th:object="${horse}" method="post" class="text-center">
 			
             <div class="mb-3 form-group">

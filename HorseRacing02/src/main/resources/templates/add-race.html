@@ -8,26 +8,38 @@
 <body class="bg-light d-flex align-items-center min-vh-100">
     <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
         <h1 class="text-center text-primary mb-4">レース情報登録</h1>
-        <div th:if="${message} != null">
+        <div th:if="${message}">
 			<p th:text="${message}"></p>
 		</div>
+		<div th:if="${error}">
+			<p th:text="${error}"></p>
+		</div>
         <form th:action="@{/races/add}" th:object="${race}" method="post" class="text-center">
+			
             <div class="mb-3 form-group">
                 <label for="location" class="form-label fw-bold">開催地</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('location')}" th:errors="*{location}" ></div>
                 <input type="text" class="form-control text-center" id="location" name="location" th:field="*{location}" placeholder="例：東京競馬場" required>
             </div>
+            
             <div class="mb-3 form-group">
                 <label for="date" class="form-label fw-bold">日付</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('date')}" th:errors="*{date}" ></div>
                 <input type="date" class="form-control text-center" id="date" name="date" th:field="*{date}" required>
             </div>
+            
             <div class="mb-3 form-group">
                 <label for="weather" class="form-label fw-bold">天候</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('weather')}" th:errors="*{weather}" ></div>
                 <input type="text" class="form-control text-center" id="weather" name="weather" th:field="*{weather}" placeholder="例：晴れ" required>
             </div>
+            
             <div class="mb-3 form-group">
                 <label for="trackCondition" class="form-label fw-bold">馬場状態</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('trackCondition')}" th:errors="*{trackCondition}" ></div>
                 <input type="text" class="form-control text-center" id="trackCondition" name="trackCondition" th:field="*{trackCondition}" placeholder="例：良" required>
             </div>
+            
             <button type="submit" class="btn btn-primary w-100 mt-4 py-2">レース情報を登録する</button>
         </form>
         

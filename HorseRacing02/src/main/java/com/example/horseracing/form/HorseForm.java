@@ -3,15 +3,15 @@ package com.example.horseracing.form;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class HorseForm {
 
-	@NotNull(message="入力してください")
 	private Integer id;
 	
-	@Min(value=3, message="3文字以上で入力してください")
+	@Size(min=3, message="3文字以上で入力してください")
 	@NotNull(message="入力してください")
 	private String name;
 	

@@ -40,12 +40,19 @@ public class HorseController {
 			RedirectAttributes redirectAttributes) {
 		
 		if (result.hasErrors()) {
+			System.out.println("登録失敗");
 			return "add-horse";
 		}
 		
-		repository.addHorse(form);
-		redirectAttributes.addFlashAttribute("message", "競走馬情報が登録されました");
-		
+	    try {
+	        repository.addHorse(form);
+	        redirectAttributes.addFlashAttribute("message", "競走馬情報が登録されました");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        redirectAttributes.addFlashAttribute("error", "登録に失敗しました");
+	        return "redirect:/horses/add";
+	    }
+	    
 		return "redirect:/horses/add";
 		
 	}

@@ -2,6 +2,8 @@ package com.example.horseracing.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/races")
 public class RaceController {
 
-	private final RaceRepository raceRepository;
+	private final RaceRepository repository;
 	
 	@GetMapping("/add")
 	private String showAddRaceForm(
@@ -30,24 +32,32 @@ public class RaceController {
 	
 	@PostMapping("/add")
 	private String addRace(
-			@ModelAttribute RaceForm form,
+			@Validated @ModelAttribute("race") RaceForm form,
+			BindingResult result,
 			Model model,
 			RedirectAttributes redirectAttributes) {
-		int result = raceRepository.addRace(form);
 		
-		if (result == 1) {
-			redirectAttributes.addFlashAttribute("message", "レース情報が登録されました！");
-		} else {
-			redirectAttributes.addFlashAttribute("message", "登録に失敗しました...");
+		if(result.hasErrors()) {
+			System.out.println("登録失敗");
+			return "add-race";
 		}
 		
+		try {
+			repository.addRace(form);
+			redirectAttributes.addFlashAttribute("message", "レース情報が登録されました！");
+		}catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("message", "登録に失敗しました...");
+			return "redirect:/races/add";
+		}
+			
 		return "redirect:/races/add";
 		
 	}
 	
 	@GetMapping("/all")
 	private String getAllRaces(Model model) {
-		model.addAttribute("races", raceRepository.getAllRaces());
+		model.addAttribute("races", repository.getAllRaces());
 		return "list";
 	}
 }

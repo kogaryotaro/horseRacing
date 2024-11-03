@@ -2,6 +2,8 @@ package com.example.horseracing.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,13 +34,25 @@ public class JockeyController {
 	
 	@PostMapping("/add")
 	public String addJockey(
-			@ModelAttribute JockeyForm form,
+			@Validated @ModelAttribute("jockey") JockeyForm form,
+			BindingResult result,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		
-		repository.addJockey(form);
-		redirectAttributes.addFlashAttribute("message", "ジョッキー情報が登録されました");
+		if (result.hasErrors()){
+			System.out.println("登録失敗");
+			return "add-jockey";
+		}
 		
+		try {
+			repository.addJockey(form);
+			redirectAttributes.addFlashAttribute("message", "ジョッキー情報が登録されました");
+		} catch(Exception e){
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("error", "登録に失敗しました");			
+			return "redirect:/jockeys/add";
+		}
+
 		return "redirect:/jockeys/add";
 		
 	}

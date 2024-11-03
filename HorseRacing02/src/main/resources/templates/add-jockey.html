@@ -8,16 +8,22 @@
 <body class="bg-light d-flex align-items-center min-vh-100">
     <div class="container my-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
         <h1 class="text-center text-primary mb-4">ジョッキー登録</h1>
-        <div th:if="${message} != null">
+        <div th:if="${message}">
 			<p th:text="${message}"></p>
 		</div>
+		<div th:if="${error}">
+			<p th:text="${error}"></p>
+		</div>
         <form th:action="@{/jockeys/add}" th:object="${jockey}" method="post" class="text-center">
+			
             <div class="mb-3 form-group">
                 <label for="name" class="form-label fw-bold">名前</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></div>
                 <input type="text" class="form-control text-center" id="name" name="name" th:field="*{name}" placeholder="例：川田" required>
             </div>
             <div class="mb-3 form-group">
                 <label for="experience" class="form-label fw-bold">年数</label>
+                <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}" ></div>
                 <input type="text" class="form-control text-center" id="experience" name="experience" th:field="*{experience}"  placeholder="例：40">
             </div>
             <button type="submit" class="btn btn-primary w-100 mt-4 py-2">ジョッキー情報を登録する</button>
